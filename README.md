@@ -17,6 +17,16 @@ Development backend api:
 make run_backend_dev
 ```
 
+Run lib of congress scraper:
+```
+make parse_lib_congress
+```
+
+Run Twitter account parser:
+```
+TWITTER_ACCOUNT=therealdonaldtrump NUM_TWEETS=100 make parse_tweet
+```
+
 ## Repo Structure
 
 ### `/app`
@@ -35,7 +45,6 @@ A Flask app that serves a single `GET` request and returns a single piece of "ne
 python -m spacy download en
 ```
 
-
 ### `/scrapers`
 
 #### Library of Congress Scraper
@@ -44,9 +53,6 @@ A Python web scraper that pulls legislation from the Library of Congress and wri
 #### Twitter Scraper
 A Python script that reads in the last N tweets of a given Twitter accounts and writes it to a format readible by the Markov trainer.
 
-
-
-
 ## Requirements
-
 - Python 3.7.2
+- Node 11.120
