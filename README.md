@@ -25,7 +25,8 @@ To run the 'extract transform load analyze' pipeline that parses data from vario
 
 Environment variables are stored or passed at runtime as: 
 
-```TWITTER_RECURSE_API_KEY
+```
+TWITTER_RECURSE_API_KEY
 TWITTER_RECURSE_API_SECRET
 TWITTER_RECURSE_ACCESS_TOKEN
 TWITTER_RECURSE_ACCESS_TOKEN_SECRET
@@ -57,15 +58,15 @@ Development backend api:
 make run_backend_dev
 ```
 
-You should be able to see a working example of the site in your favorite browser at [localhost:3000](http://localhost.3000).
+You should be able to see a working example of the site in your favorite browser on localhost at port 3000.
 
-## Repo Structure
+## What's in the repo?
 
 ### `/app`
 A React web app that `GET`s a single `/texts` endpoint.
 
 ### `/api`
-A Flask app that serves a single `GET` request and returns a single piece of "new legislation"
+A Flask app that serves a single `GET` request and returns a single "tweet".
 
 ### `/api/model`
 * A `train.py` script for reading in a list of sentences and writing a new Markov model.
@@ -74,8 +75,8 @@ A Flask app that serves a single `GET` request and returns a single piece of "ne
 
 ### `/scrapers`
 
-#### `shakespeare.py`
+#### `/scrapers/shakespeare.py`
 The script we'll fill out in the interview that will parse http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
 
-#### Twitter Scraper
+#### `/scrapers/twitter.py`
 A Python script that reads in the last N tweets of users in a given list of Twitter accounts and writes it to a format readible by the Markov trainer.
