@@ -4,14 +4,25 @@ A simple web page that spits out legislation as if written by a particular Twitt
 
 ## Setup and run the app
 
-TODO
+Run two separate windows in your terminal of choice:
+
+Development web app:
+```
+make run_webapp_dev
+```
+
+Development backend api:
+
+```
+make run_backend_dev
+```
 
 ## Repo Structure
 
-### `/react-app`
+### `/app`
 A React web app that `GET`s a single "new legislation" endpoint.
 
-### `/flask-app`
+### `/api`
 A Flask app that serves a single `GET` request and returns a single piece of "new legislation"
 
 ### `/scrapers`
