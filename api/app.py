@@ -12,7 +12,7 @@ with open(MARKOV_MODEL_PATH) as fh:
 app = Flask(__name__)
 
 
-@app.route("/text")
+@app.route("/texts")
 def get_text():
     text = model.make_short_sentence(280)
     formatted_text = " ".join(text.replace("\n", " ").split())
