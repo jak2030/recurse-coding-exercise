@@ -1,7 +1,7 @@
 export MARKOV_MODEL_PATH=api/model/data/serialized/markov.json
 export MARKOV_MODEL_CORPUS_DIR=api/model/data/corpus/
-export TWEETS_OUTPUT_PATH=api/model/data/corpus/tweets.txt
-export SHAKESPEARE_OUTPUT_PATH=api/model/data/corpus/hamlet.txt
+export TWEETS_OUTPUT_DIR=api/model/data/corpus/tweets.txt
+export SHAKESPEARE_OUTPUT_PATH=api/model/data/corpus/shakespeare.txt
 
 setup:
 	@(make setup_webapp)
