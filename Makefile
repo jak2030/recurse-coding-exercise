@@ -1,2 +1,5 @@
-run_backend:
-	FLASK_APP=./flask-app/app.py flask run
+run_webapp_dev:
+	cd app && yarn start
+
+run_backend_dev:
+	FLASK_ENV=development FLASK_APP=./api/app.py flask run
