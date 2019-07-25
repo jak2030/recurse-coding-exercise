@@ -1,14 +1,14 @@
 # Bard Tweets
 
-A single page web app to generate tweets in the style of the Bard.
+Generate Frankenstein "tweets" that mash the style of the Bard with Twitter accounts of your choosing. Be amazed as you refresh your single page web app!
 
-## Setup
+## Setting up your environment
 
-The project uses Python for backend and data scripting and Javascript for the web app.
+The project uses Javascript for the web app and Python for the backend API, data extraction, and model generation.
 
 Anything above [Node](https://nodejs.org/en/download/) 4.0 should work for running the web app. I use [Yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) for package management.
 
-I developed the Python in version **3.7.2**. I used [pyenv](https://github.com/pyenv/pyenv) to manage my Python installations and [pipenv](https://docs.pipenv.org/en/latest/install/) to manage project dependencies. (I like [this guide](https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c) on how to get this setup.)
+I developed the Python in version 3.7.2. I used [pyenv](https://github.com/pyenv/pyenv) to manage my Python installations and [pipenv](https://docs.pipenv.org/en/latest/install/) to manage project dependencies. (I like [this guide](https://hackernoon.com/reaching-python-development-nirvana-bb5692adf30c) on how to get this setup.)
 
 
 If you also set the app up in this way, you should be able to run:
@@ -17,9 +17,9 @@ If you also set the app up in this way, you should be able to run:
 make setup
 ```
 
-Which takes care of installing dependencies for the React web app, the Python Flask API, as well as the parsing and model training Python scripts.
+which takes care of installing dependencies for the React web app, the Python Flask API, and the data extraction and model training Python scripts.
 
-## Run the ETLA pipeline
+## Running the ETLA pipeline
 
 To run the 'extract transform load analyze' pipeline that parses data from various Shakespeare and Twitter sources, trains the raw text into a Markov model and writes a JSON-serialized version to a file, you'll need your own [Twitter API credentials](https://developer.twitter.com/en/apply-for-access.html).
 
@@ -66,7 +66,7 @@ Development backend api:
 make run_backend_dev
 ```
 
-You should be able to see a working example of the site in your favorite browser on localhost at port 3000.
+You should be able to see a working example of the site in your favorite browser at `localhost:3000`.
 
 ## What's in the repo?
 
@@ -74,7 +74,7 @@ You should be able to see a working example of the site in your favorite browser
 A React web app that `GET`s a single `/texts` endpoint.
 
 ### `/api`
-A Flask app that serves a single `GET` request and returns a single "tweet".
+A Flask app that serves a single `GET` `/texts` request and returns a single "tweet".
 
 ### `/api/model`
 * A `train.py` script for reading in a list of sentences and writing a new Markov model.
@@ -83,8 +83,6 @@ A Flask app that serves a single `GET` request and returns a single "tweet".
 
 ### `/scrapers`
 
-#### `/scrapers/shakespeare.py`
-The script we'll fill out in the interview that will parse http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
+* A `shakespeare.py` script we'll fill out in the interview that will parse http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
 
-#### `/scrapers/twitter.py`
-A Python script that reads in the last N tweets of users in a given list of Twitter accounts and writes it to a format readible by the Markov trainer.
+* A `twitter.py`script that reads in the last N tweets of users in a given list of Twitter accounts and writes it to a format readible by the Markov trainer.
