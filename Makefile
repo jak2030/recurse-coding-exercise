@@ -23,15 +23,15 @@ run_backend_dev:
 	FLASK_ENV=development FLASK_APP=./api/app.py flask run
 
 run_etla:
-	@(make parse_tweets)
+	@(make parse_cardi_tweets)
 	@(make parse_shakespeare)
 	@(make train_model)	
 
 train_model:
 	python api/model/train.py --corpus_dir ${MARKOV_MODEL_CORPUS_DIR} --output ${MARKOV_MODEL_PATH}
 
-parse_tweets:
-	python scrapers/twitter.py --num_tweets ${NUM_TWEETS} --accounts ${TWITTER_ACCOUNTS} --output ${TWEETS_OUTPUT_PATH}
+parse_cardi_tweets:
+	python scrapers/twitter.py --num_tweets 1000 --accounts iamcardib --output ${TWEETS_OUTPUT_PATH}
 
 parse_shakespeare:
 	python scrapers/shakespeare.py --output ${SHAKESPEARE_OUTPUT_PATH}
