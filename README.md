@@ -1,6 +1,6 @@
-# Bard Tweets
+# Bardi B
 
-Generate Frankenstein "tweets" that mash the style of the Bard with Twitter accounts of your choosing. Be amazed as you refresh your single page web app!
+This project parses Shakespeare and mashes it up with tweets by Cardi B.
 
 ## Setting up your environment
 
@@ -38,7 +38,7 @@ The command expects two pipeline-specific environment variables: the Twitter acc
 Running:
 
 ```
-NUM_TWEETS=100 TWITTER_ACCOUNTS=realdonaldtrump make run_etla
+NUM_TWEETS=100 TWITTER_ACCOUNTS=iamcardib make run_etla
 ```
 
 will generate a model located at `api/model/data/serialized/`.
@@ -49,7 +49,7 @@ You can run the command for more than one Twitter account by passing a space-del
 NUM_TWEETS=100 TWITTER_ACCOUNTS="Rihanna TheEllenShow" make run_etla
 ```
 
-In my humble opinion, this is the hard part - I made this toy app specifically to mash up realdonaldtrump and Shakespeare, but the combinations are all a matter of taste :).
+(So you can actually choose your own adventure for what Twitter account(s) to use.)
 
 ## Run the app
 
@@ -83,6 +83,6 @@ A Flask app that serves a single `GET` `/texts` request and returns a single "tw
 
 ### `/scrapers`
 
-* A `shakespeare.py` script we'll fill out in the interview that will parse http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
+* A `shakespeare.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
 
 * A `twitter.py`script that reads in the last N tweets of users in a given list of Twitter accounts and writes it to a format readible by the Markov trainer.
