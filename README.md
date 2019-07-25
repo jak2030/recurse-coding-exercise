@@ -38,10 +38,16 @@ The command expects two pipeline-specific environment variables: the Twitter acc
 Running:
 
 ```
-NUM_TWEETS=100 TWITTER_ACCOUNT=realdonaldtrump make run_etla
+NUM_TWEETS=100 TWITTER_ACCOUNTS=realdonaldtrump make run_etla
 ```
 
 will generate a model located at `api/model/data/serialized/`.
+
+If you want to include more than one Twitter account, pass a space-delimited string for the `TWITTER_ACCOUNTS`:
+
+```
+NUM_TWEETS=100 TWITTER_ACCOUNTS="Rihanna TheEllenShow" make run_etla
+```
 
 ## Run the app
 

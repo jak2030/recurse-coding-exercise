@@ -31,7 +31,7 @@ train_model:
 	python api/model/train.py --corpus_dir ${MARKOV_MODEL_CORPUS_DIR} --output ${MARKOV_MODEL_PATH}
 
 parse_tweets:
-	python scrapers/twitter.py --num_tweets ${NUM_TWEETS} --account ${TWITTER_ACCOUNT} --output ${TWEETS_OUTPUT_PATH}
+	python scrapers/twitter.py --num_tweets ${NUM_TWEETS} --accounts ${TWITTER_ACCOUNTS} --output ${TWEETS_OUTPUT_PATH}
 
 parse_shakespeare:
 	python scrapers/shakespeare.py --output ${SHAKESPEARE_OUTPUT_PATH}
