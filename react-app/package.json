@@ -1,9 +1,0 @@
-{
-  "name": "recurse-interview-app",
-  "version": "1.0.0",
-  "description": "Simple one page app for recurse interview",
-  "main": "index.js",
-  "repository": "https://github.com/jak2030/recurse-interview",
-  "author": "Jeremy Krinsley",
-  "license": "MIT"
-}
