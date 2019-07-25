@@ -1,5 +1,6 @@
 import argparse
 import re
+import glob
 
 from spacy_markov import SpacyMarkovify
 
@@ -7,7 +8,10 @@ from spacy_markov import SpacyMarkovify
 def generate_model(corpus_fpaths):
     """Generate a markov model given a corpus."""
     text = []
-    for fpath in corpus_fpaths:
+    # remove a trailing slash and add asterisk
+    glob_pattern = "{}/*".format("/".join(corpus_fpaths.split("/")[0:-1]))
+    # combine text from all globbed files
+    for fpath in glob.glob(glob_pattern):
         with open(fpath) as fh:
             text.append(fh.read())
     text_model = SpacyMarkovify("\n".join(text))
@@ -24,7 +28,7 @@ def store_model(model, output_fpath):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a Markov model.")
     parser.add_argument(
-        "--corpus", type=str, nargs="+", help="A path to the corpus used for training."
+        "--corpus_dir", type=str, help="A path to the corpus directory used for training."
     )
     parser.add_argument(
         "--output",
@@ -32,8 +36,8 @@ if __name__ == "__main__":
         help="A path to which to write a serialized version of the model.",
     )
     args = parser.parse_args()
-    print("Generating model from files: {}".format(args.corpus))
-    model = generate_model(args.corpus)
+    print("Generating model from files: {}".format(args.corpus_dir))
+    model = generate_model(args.corpus_dir)
     print("Storing model to {}".format(args.output))
     store_model(model, args.output)
     print("Process complete!")
