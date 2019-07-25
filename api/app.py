@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, jsonify
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/laws')
 def get_law():
-    return 'Such a good law.'
+    return jsonify('Such a good law.')
