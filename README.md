@@ -21,9 +21,11 @@ which takes care of installing dependencies for the React web app, the Python Fl
 
 ## Running the ETLA pipeline
 
-To run the 'extract transform load analyze' pipeline that parses data from various Shakespeare and Twitter sources, trains the raw text into a Markov model and writes a JSON-serialized version to a file, you'll need your own [Twitter API credentials](https://developer.twitter.com/en/apply-for-access.html).
+The ETLA ('extract transform load analyze') pipeline parses data from various Shakespeare and Twitter sources, writes the output to files, and calls a Markov library to train the raw text into a model and write it to a JSON-serialized version to a file.
 
-Environment variables are stored or passed at runtime as: 
+You'll need your own [Twitter API credentials](https://developer.twitter.com/en/apply-for-access.html) to run this portion.
+
+Environment variables for these creds are stored or passed at runtime as: 
 
 ```
 TWITTER_RECURSE_API_KEY
@@ -38,18 +40,10 @@ The command expects two pipeline-specific environment variables: the Twitter acc
 Running:
 
 ```
-NUM_TWEETS=100 TWITTER_ACCOUNTS=iamcardib make run_etla
+make run_etla
 ```
 
 will generate a model located at `api/model/data/serialized/`.
-
-You can run the command for more than one Twitter account by passing a space-delimited string for the `TWITTER_ACCOUNTS`:
-
-```
-NUM_TWEETS=100 TWITTER_ACCOUNTS="Rihanna TheEllenShow" make run_etla
-```
-
-(So you can actually choose your own adventure for what Twitter account(s) to use.)
 
 ## Run the app
 
@@ -85,4 +79,4 @@ A Flask app that serves a single `GET` `/texts` request and returns a single "tw
 
 * A `shakespeare.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
 
-* A `twitter.py`script that reads in the last N tweets of users in a given list of Twitter accounts and writes it to a format readible by the Markov trainer.
+* A `twitter.py`script that reads in the last 1000 Cardi B tweets and write them to a format readible by the Markov trainer.
