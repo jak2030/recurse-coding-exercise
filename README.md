@@ -1,6 +1,6 @@
-# Recurse Interview
+# Bard Tweets
 
-A single page web page that spits out sweet nothings penned by the Bard filtered through a certain Twitter account.
+A single page web app to generate tweets in the style of the Bard.
 
 ## Setup
 
@@ -43,11 +43,13 @@ NUM_TWEETS=100 TWITTER_ACCOUNTS=realdonaldtrump make run_etla
 
 will generate a model located at `api/model/data/serialized/`.
 
-If you want to include more than one Twitter account, pass a space-delimited string for the `TWITTER_ACCOUNTS`:
+You can run the command for more than one Twitter account by passing a space-delimited string for the `TWITTER_ACCOUNTS`:
 
 ```
 NUM_TWEETS=100 TWITTER_ACCOUNTS="Rihanna TheEllenShow" make run_etla
 ```
+
+In my humble opinion, this is the hard part - I made this toy app specifically to mash up realdonaldtrump and Shakespeare, but the combinations are all a matter of taste :).
 
 ## Run the app
 
