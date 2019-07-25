@@ -1,6 +1,6 @@
 export MARKOV_MODEL_PATH=api/model/data/serialized/markov.json
 export MARKOV_MODEL_CORPUS_DIR=api/model/data/corpus/
-export TWEETS_OUTPUT_DIR=api/model/data/corpus/tweets.txt
+export TWEETS_OUTPUT_PATH=api/model/data/corpus/tweets.txt
 export SHAKESPEARE_OUTPUT_PATH=api/model/data/corpus/shakespeare.txt
 
 setup:
@@ -13,8 +13,9 @@ setup_webapp:
 setup_backend:
 	pyenv local 3.7.2
 	pipenv install
-	python -m spacy download en
 	pipenv shell
+	python -m spacy download en
+
 
 run_webapp_dev:
 	yarn --cwd app start
