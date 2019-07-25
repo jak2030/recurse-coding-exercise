@@ -12,7 +12,8 @@ with open(MARKOV_MODEL_PATH) as fh:
 app = Flask(__name__)
 
 
-@app.route("/laws")
-def get_law():
-    law = model.make_short_sentence(280)
-    return jsonify(law)
+@app.route("/text")
+def get_text():
+    text = model.make_short_sentence(280)
+    formatted_text = " ".join(text.replace("\n", " ").split())
+    return jsonify(formatted_text)

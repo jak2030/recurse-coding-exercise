@@ -6,7 +6,7 @@ function App() {
   const [law, setLaw] = useState([]);
   
   useEffect(() =>{
-    fetch('/laws').then(response => response.json()).then(data => {
+    fetch('/text').then(response => response.json()).then(data => {
       setLaw(data);
     })
   }, [])
