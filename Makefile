@@ -13,7 +13,7 @@ setup_webapp:
 setup_backend:
 	pyenv local 3.7.2
 	pipenv install
-	pipenv shell
+	pipenv run
 	python -m spacy download en
 
 
