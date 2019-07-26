@@ -14,6 +14,8 @@ setup_backend:
 	pyenv local 3.7.2
 	pipenv install
 	pipenv run python -m spacy download en
+	mkdir -p api/model/data/corpus
+	mkdir -p api/model/data/serialized
 
 
 run_webapp_dev:
