@@ -1,5 +1,7 @@
 import argparse
 import os
+import errno
+
 import requests
 from requests_oauthlib import OAuth1
 
@@ -16,26 +18,44 @@ def authorize_api_account():
     return auth
 
 
-def get_tweets(users, auth, num_tweets=100):
+def get_tweets(users, auth, num_tweets=100, max_id=0):
+    max_tweets_per_call = 200
+    url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
     tweets = []
     for user in users:
-        url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name={}&count={}".format(
-            user, num_tweets
+        cur_tweet_count = 0
+        params = dict(
+            screen_name=user,
+            count=num_tweets if num_tweets < max_tweets_per_call else max_tweets_per_call,
         )
-        r = requests.get(url, auth=auth)
-        tweets.extend([tweet["text"] for tweet in r.json()])
+        while cur_tweet_count < num_tweets:
+            if len(tweets):
+                params["max_id"] = tweets[-1]["id"]
+            r = requests.get(url, params=params, auth=auth)
+            batch = [tweet for tweet in r.json()]
+            tweets.extend(batch)
+            cur_tweet_count += len(batch)
     return tweets
 
 
-def store_tweets(tweets, output_filepath):
-    with open(output_filepath, "w") as fh:
-        fh.write("\n".join(tweets))
+def store_tweets(tweets, output_dir):
+    if not os.path.exists(os.path.dirname(output_dir)):
+        try:
+            os.makedirs(os.path.dirname(output_dir))
+        except OSError as exc: # Guard against race condition
+            if exc.errno != errno.EEXIST:
+                raise
+    for tweet in tweets:
+        unique_id = "{id}_{created_at}".format(**tweet).replace(" ", "-")
+        output_fpath = os.path.join(output_dir, unique_id)
+        with open(output_fpath, "w") as fh:
+            fh.write(tweet["text"])
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Pull tweets from one user.")
     parser.add_argument(
-        "--num_tweets", type=int, default=10, help="How many tweets should we pull?"
+        "--num-tweets", type=int, default=10, help="How many tweets should we pull?"
     )
     parser.add_argument(
         "--accounts",
@@ -44,12 +64,12 @@ if __name__ == "__main__":
         help="The Twitter user account from which to pull.",
     )
     parser.add_argument(
-        "--output", type=str, help="A path to which to write line-separated tweets."
+        "--output-dir", type=str, help="A directory to which to write tweets."
     )
     args = parser.parse_args()
     print("Authorizing Twitter API account.")
     auth = authorize_api_account()
     print("Pulling {} latest tweets from {}".format(args.num_tweets, args.accounts))
     tweets = get_tweets(args.accounts, auth, num_tweets=args.num_tweets)
-    print("Writing tweets to {}".format(args.output))
-    store_tweets(tweets, args.output)
+    print("Writing tweets to {}".format(args.output_dir))
+    store_tweets(tweets, args.output_dir)
