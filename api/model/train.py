@@ -5,11 +5,11 @@ import glob
 from spacy_markov import SpacyMarkovify
 
 
-def generate_model(corpus_fpaths):
+def generate_model(corpus_dir):
     """Generate a markov model given a corpus."""
     text = []
     # remove a trailing slash and add asterisk
-    glob_pattern = "{}/*".format("/".join(corpus_fpaths.split("/")[0:-1]))
+    glob_pattern = "{}/*".format("/".join(corpus_dir.split("/")[0:-1]))
     # combine text from all globbed files
     for fpath in glob.glob(glob_pattern):
         with open(fpath) as fh:
