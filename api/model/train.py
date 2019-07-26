@@ -28,7 +28,7 @@ def store_model(model, output_fpath):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a Markov model.")
     parser.add_argument(
-        "--corpus_dir", type=str, help="A path to the corpus directory used for training."
+        "--corpus-dir", type=str, help="A path to the corpus directory used for training."
     )
     parser.add_argument(
         "--output",
