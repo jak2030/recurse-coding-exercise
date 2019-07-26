@@ -28,10 +28,10 @@ You'll need your own [Twitter API credentials](https://developer.twitter.com/en/
 Environment variables for these creds are stored or passed at runtime as: 
 
 ```
-TWITTER_RECURSE_API_KEY
-TWITTER_RECURSE_API_SECRET
-TWITTER_RECURSE_ACCESS_TOKEN
-TWITTER_RECURSE_ACCESS_TOKEN_SECRET
+TWITTER_API_KEY
+TWITTER_API_SECRET
+TWITTER_ACCESS_TOKEN
+TWITTER_ACCESS_TOKEN_SECRET
 ```
 
 

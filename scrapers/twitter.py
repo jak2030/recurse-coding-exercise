@@ -9,10 +9,10 @@ from requests_oauthlib import OAuth1
 def authorize_api_account():
     url = "https://api.twitter.com/1.1/account/verify_credentials.json"
     auth = OAuth1(
-        os.getenv("TWITTER_RECURSE_API_KEY"),
-        os.getenv("TWITTER_RECURSE_API_SECRET"),
-        os.getenv("TWITTER_RECURSE_ACCESS_TOKEN"),
-        os.getenv("TWITTER_RECURSE_ACCESS_TOKEN_SECRET"),
+        os.getenv("TWITTER_API_KEY"),
+        os.getenv("TWITTER_API_SECRET"),
+        os.getenv("TWITTER_ACCESS_TOKEN"),
+        os.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
     )
     requests.get(url, auth=auth)
     return auth
