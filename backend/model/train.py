@@ -3,7 +3,7 @@ import re
 import glob
 
 from spacy_markov import SpacyMarkovify
-
+from writer import Writer
 
 def generate_model(corpus_dir):
     """Generate a markov model given a corpus."""
@@ -18,13 +18,6 @@ def generate_model(corpus_dir):
     return text_model
 
 
-def store_model(model, output_fpath):
-    """Serialize a model to json and write it to a file."""
-    model_json = model.to_json()
-    with open(output_fpath, "w") as fh:
-        fh.write(model_json)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a Markov model.")
     parser.add_argument(
@@ -35,10 +28,15 @@ if __name__ == "__main__":
         type=str,
         help="A path to which to write a serialized version of the model.",
     )
+    parser.add_argument(
+        "--username",
+        type=str,
+        help="The Twitter username to build a model for."
+    )
     args = parser.parse_args()
     print("Generating model from files: {}".format(args.corpus_dir))
     model = generate_model(args.corpus_dir)
     print("Storing model to {}".format(args.output))
-    store_model(model, args.output)
+    Writer(args.output).write(model, args.username)
     print("Process complete!")
 
