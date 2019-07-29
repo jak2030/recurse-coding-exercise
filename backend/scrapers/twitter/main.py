@@ -5,7 +5,6 @@ from load import store_tweets
 
 def run_etl(account, num_tweets=1000, output_dir=None):
     tweets = run_extraction(account, num_tweets=num_tweets) 
-    print("Writing tweets to {}".format(output_dir))
     store_tweets(tweets, account, output_dir)
 
 if __name__ == "__main__":

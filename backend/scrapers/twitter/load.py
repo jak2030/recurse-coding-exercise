@@ -5,6 +5,7 @@ import sys
 
 
 def store_tweets(tweets, account, root_dir):
+    print("Writing tweets to {}".format(output_dir))
     tweets_dir = os.path.join(root_dir, account)
     if not os.path.exists(os.path.dirname(tweets_dir)):
         try:
