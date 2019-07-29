@@ -1,5 +1,5 @@
 export MODEL_DIR=backend/model/data/serialized/
-export MARKOV_MODEL_CORPUS_DIR=backend/model/data/corpus/
+export CORPUS_DIR=backend/model/data/corpus/
 export TWEETS_OUTPUT_DIR=backend/model/data/corpus/
 export SHAKESPEARE_OUTPUT_PATH=backend/model/data/corpus/shakespeare.txt
 
@@ -30,10 +30,10 @@ run_etla:
 	@(make train_model)	
 
 train_model:
-	pipenv run python backend/model/train.py --corpus-dir ${MARKOV_MODEL_CORPUS_DIR} --output ${MODEL_DIR}
+	pipenv run python backend/model/train.py --corpus-dir ${CORPUS_DIR} --output ${MODEL_DIR} --username iamcardib
 
 parse_cardi_tweets:
-	pipenv run python backend/scrapers/twitter.py --num-tweets 1000 --accounts iamcardib --output-dir ${TWEETS_OUTPUT_DIR}
+	pipenv run python backend/scrapers/twitter.py --num-tweets 1000 --account iamcardib --output-dir ${TWEETS_OUTPUT_DIR}
 
 parse_shakespeare:
 	pipenv run python backend/scrapers/shakespeare.py --output ${SHAKESPEARE_OUTPUT_PATH}
