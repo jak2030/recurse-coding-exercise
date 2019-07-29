@@ -1,6 +1,7 @@
 import argparse
 import os
 import errno
+import sys
 
 import requests
 from requests_oauthlib import OAuth1
@@ -14,7 +15,12 @@ def authorize_api_account():
         os.getenv("TWITTER_ACCESS_TOKEN"),
         os.getenv("TWITTER_ACCESS_TOKEN_SECRET"),
     )
-    requests.get(url, auth=auth)
+    try:
+        r = requests.get(url, auth=auth)
+        r.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        print(err)
+        sys.exit(1)
     return auth
 
 

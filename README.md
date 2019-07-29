@@ -67,15 +67,15 @@ You should be able to see a working example of the site in your favorite browser
 ### `/app`
 A React web app that `GET`s a single `/texts` endpoint.
 
-### `/api`
+### `/backend`
 A Flask app that serves a single `GET` `/texts` request and returns a single "tweet".
 
-### `/api/model`
+### `/backend/model`
 * A `train.py` script for reading in a list of sentences and writing a new Markov model.
 * A `./data` directory to store a corpus and a trained model.
 
 
-### `/scrapers`
+### `/backend/scrapers`
 
 * A `shakespeare.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the Markov trainer.
 

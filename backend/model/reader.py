@@ -4,11 +4,11 @@ from spacy_markov import SpacyMarkovify
 
 
 class Reader(object):
-    def __init__(self, corpus_dir):
-        self.corpus_dir = corpus_dir
+    def __init__(self, root_dir):
+        self.model_dir = os.path.join(root_dir, "models")
 
     def _model_path(self, model_name):
-        return os.path.join(self.corpus_dir, model_name)
+        return os.path.join(self.model_dir, model_name)
 
     def exists(self, model_name):
         fpath = self._model_path(model_name)
