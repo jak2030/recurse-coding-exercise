@@ -33,7 +33,7 @@ train_model:
 	pipenv run python backend/model/train.py --corpus-dir ${CORPUS_DIR} --output ${MODEL_DIR} --username iamcardib
 
 parse_cardi_tweets:
-	pipenv run python backend/scrapers/twitter.py --num-tweets 1000 --account iamcardib --output-dir ${TWEETS_OUTPUT_DIR}
+	pipenv run python backend/scrapers/twitter/main.py --num-tweets 1000 --account iamcardib --output-dir ${TWEETS_OUTPUT_DIR}
 
 parse_shakespeare:
-	pipenv run python backend/scrapers/shakespeare.py --output ${SHAKESPEARE_OUTPUT_PATH}
+	pipenv run python backend/scrapers/shakespeare/main.py --output ${SHAKESPEARE_OUTPUT_PATH}

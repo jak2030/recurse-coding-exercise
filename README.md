@@ -77,6 +77,6 @@ A Flask app that serves a single `GET` `/texts` request and returns a single "tw
 
 ### `/backend/scrapers`
 
-* A `shakespeare.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the model trainer.
+* A `./shakespeare/main.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the model trainer.
 
-* A `twitter.py`script that reads in the latest tweets from the specified user and writes them to a format readible by the model trainer.
+* A `./twitter/main.py`script that reads in the latest tweets from the specified user and writes them to a format readible by the model trainer.
