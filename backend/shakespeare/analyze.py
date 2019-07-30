@@ -17,7 +17,7 @@ def build_shakespeare_model(lines, model_name):
         and also decide on a good set of categories to use.
         - Run all lines (or subsets of lines grouped into categories) through an ANN for a more
         artificially derived Shakespeare.
-        - ...
+        - Use RNNs as this person does here: http://karpathy.github.io/2015/05/21/rnn-effectiveness/
     """
     model = generate_model(lines)
     write_model(model, model_name)
