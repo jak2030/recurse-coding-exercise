@@ -33,9 +33,9 @@ if __name__ == "__main__":
         type=str,
         nargs="+",
         help="""Two arguments: The name of the Twitter account for which to build the model
-        followed by the archetype they should talk like.""",
+        followed by the archetype (villain, jester, dreamer) they should talk like.
+        For instance: iamcardib jester""",
     )
-    # There's only one task, so just calling it here :)
     args = parser.parse_args()
     twitter_account = args.build_model[0]
     archetype = args.build_model[1]
