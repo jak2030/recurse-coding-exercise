@@ -21,8 +21,8 @@ def _quick_clean(txt):
 @app.route("/lines")
 def get_text():
     twitter_username = request.args.get("username", "iamcardib")
-    app.logger.info("Twitter name: {}".format(twitter_username))
     archetype = request.args.get("archetype", "jester").lower()
+    app.logger.info("Twitter name: {}".format(twitter_username))
     name = model_name(twitter_username, archetype)
     if not model_reader.exists(name):
         app.logger.info(
