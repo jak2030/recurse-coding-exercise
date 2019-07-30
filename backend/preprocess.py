@@ -8,7 +8,7 @@ from model.spacy_markovify import generate_model, write_model, combine_models
 from constants import VILLAINS, JESTERS, DREAMERS
 
 
-def match(line, archetypes):
+def _match(line, archetypes):
     for archetype in archetypes:
         if (
             line["character"] == archetype["character"]
@@ -24,11 +24,11 @@ def run_shakespeare_etl():
     jesters = []
     dreamers = []
     for line in parse_shakespeare():
-        if match(line, VILLAINS):
+        if _match(line, VILLAINS):
             villains.append(line["text"])
-        if match(line, JESTERS):
+        if _match(line, JESTERS):
             jesters.append(line["text"])
-        if match(line, DREAMERS):
+        if _match(line, DREAMERS):
             dreamers.append(line["text"])
     return dict(
         villain="\n".join(villains),
