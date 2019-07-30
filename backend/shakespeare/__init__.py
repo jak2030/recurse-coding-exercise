@@ -8,6 +8,7 @@ from shakespeare.analyze import (
 
 def run_shakespeare_etla():
     print("Parsing the Bard...")
+    # where lines key -> val is archetype -> text_blob 
     lines = parse_by_category()
     models = []
     for archetype_name in lines:
