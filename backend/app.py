@@ -10,7 +10,7 @@ app = Flask(__name__)
 model_reader = ModelReader(MODELS_DIR)
 
 
-def quick_clean(txt):
+def _quick_clean(txt):
     # remove trailing spaces from these characters
     txt = " ".join(txt.replace("\n", " ").split())
     for char in [" ,", " ;", " '"]:
@@ -34,10 +34,10 @@ def get_text():
     else:
         model = model_reader.read(name)
     # Try to get a longer tweet...
-    attempts = 3
+    attempts = 5
     for _ in range(0, attempts):
         text = model.make_short_sentence(280)
         if len(text) > 100:
             break
-    formatted_text = quick_clean(text)
+    formatted_text = _quick_clean(text)
     return jsonify(formatted_text)
