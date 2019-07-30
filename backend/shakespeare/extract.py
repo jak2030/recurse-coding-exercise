@@ -4,6 +4,16 @@ import argparse
 from bs4 import BeautifulSoup
 import requests
 
+from constants import VILLAINS, JESTERS, DREAMERS
+
+def _match(line, archetypes):
+    for archetype in archetypes:
+        if (
+            line["character"] == archetype["character"]
+            and line["play"] == archetype["play"]
+        ):
+            return True
+    return False
 
 def get_soup(url):
     response = requests.get(url)
@@ -68,3 +78,20 @@ def parse_shakespeare():
                 )
         # increment the category index after collecting all works in this table
         category_idx += 1
+
+def parse_by_category():
+    villains = []
+    jesters = []
+    dreamers = []
+    for line in parse_shakespeare():
+        if _match(line, VILLAINS):
+            villains.append(line["text"])
+        if _match(line, JESTERS):
+            jesters.append(line["text"])
+        if _match(line, DREAMERS):
+            dreamers.append(line["text"])
+    return dict(
+        villain="\n".join(villains),
+        jester="\n".join(jesters),
+        dreamer="\n".join(dreamers),
+    )
