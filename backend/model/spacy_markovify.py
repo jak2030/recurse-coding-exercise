@@ -61,6 +61,7 @@ def write_model(model, name=None):
         raise Exception("Name required for model.")
     model_json = model.to_json()
     fpath = os.path.join(MODELS_DIR, name)
+    make_missing_paths(MODELS_DIR)
     print("Writing model to {}".format(fpath))
     with open(fpath, "w") as fh:
         fh.write(model_json)
