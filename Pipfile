@@ -5,6 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 pylint = "*"
+rope = "*"
 
 [packages]
 spacy = "*"
@@ -13,6 +14,7 @@ markovify = "*"
 requests-oauthlib = "*"
 Flask = "*"
 beautifulsoup4 = "*"
+rope = "*"
 
 [requires]
 python_version = "3.7"

@@ -1,20 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import "./App.css";
-import {Law} from "./components/Law";
+import { Line } from "./components/Line";
 
 function App() {
-  const [law, setLaw] = useState([]);
-  
-  useEffect(() =>{
-    fetch('/texts').then(response => response.json()).then(data => {
-      setLaw(data);
-    })
+  const [line, setLine] = useState([]);
+  const [username, setUsername] = useState("iamcardib");
+  const [archetype, setArchetype] = useState("jester");
+
+  useEffect(() => {
+    fetch(`/lines?username=${username}&archetype=${archetype}`)
+      .then(response => response.json())
+      .then(data => {
+        setLine(data);
+      })
   }, [])
 
- 
+
   return (
     <div className="App">
-    <Law law={law}/>
+      <Line line={line} />
     </div>
   );
 }
