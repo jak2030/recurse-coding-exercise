@@ -19,7 +19,7 @@ run_backend_dev:
 	FLASK_ENV=development FLASK_APP=./backend/app.py pipenv run flask run
 
 build_model:
-	pipenv run python backend/task.py --build-model iamcardib jester
+	pipenv run python backend/task.py --build-model $(account) $(archetype)
 
 preprocess:
 	pipenv run python backend/preprocess.py
