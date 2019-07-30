@@ -23,7 +23,7 @@ which takes care of installing dependencies for the React web app, the Python Fl
 
 This script needs to be run before starting up the app. It builds four Shakespeare-specific models: one for villainous characters, another for jesters, a third for dreamers, and another that combines those three archetypes.
 
-The script parses the complete works, pulls pre-defined characters by archetyep and combines their text into these aforementioned models. Each model is written to a JSON-serialized file.
+The script parses the complete works, pulls pre-defined characters by archetype and combines their text into these aforementioned models. Each model is written to a JSON-serialized file.
 
 To run preprocessing, enter:
 
@@ -41,7 +41,6 @@ make run_webapp_dev
 ```
 
 Development backend api:
-
 ```
 make run_backend_dev
 ```
@@ -57,7 +56,7 @@ TWITTER_ACCESS_TOKEN
 TWITTER_ACCESS_TOKEN_SECRET
 ```
 
-This is because every time a new permutation of Twitter account user + archetype is requested by the client a server executes a backend task to parse Twitter and build a new model that combines those tweets with the given archetypal Shakespeare model, if it doesn't already exist.
+Every time a new permutation of a Twitter account user and archetype is requested by the client, a server executes a backend task to parse the Twitter account and build a new model that combines those tweets with the given archetypal Shakespeare model, if it doesn't already exist.
 
 You should be able to see a working example of the site in your favorite browser at `localhost:3000`.
 
@@ -66,7 +65,7 @@ You should be able to see a working example of the site in your favorite browser
 ### `/app`
 A React web app that `GET`s a single `/lines` endpoint.
 
-### `/backend`
+### `/backend/app.py`
 A Flask app that serves a single `GET` `/lines` request and returns a single "tweet".
 
 ### `/backend/model`
