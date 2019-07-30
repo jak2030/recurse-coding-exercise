@@ -1,6 +1,6 @@
 # Bardi B
 
-This project parses Shakespeare and mashes it up with tweets by Cardi B.
+This project parses Shakespeare and mashes it up with tweets by Cardi B or any other Twitter user requested by the client app. It builds a model on the fly if it doesn't already have the requested model. Furthermore, you can request the Shakespearean style from "villain", "jester", or "dreamer".
 
 ## Setting up your environment
 
@@ -19,33 +19,19 @@ make setup
 
 which takes care of installing dependencies for the React web app, the Python Flask API, and the data extraction and model training Python scripts.
 
-## Running the ETLA pipeline
+## Running pre-processing
 
-The ETLA ('extract transform load analyze') pipeline parses data from various Shakespeare and Twitter sources, writes the output to files, and calls a Markov library to train the raw text into a model and write it to a JSON-serialized version to a file.
+This script needs to be run before starting up the app. It builds four Shakespeare-specific models: one for villainous characters, another for jesters, a third for dreamers, and another that combines those three archetypes.
 
-You'll need your own [Twitter API credentials](https://developer.twitter.com/en/apply-for-access.html) to run this portion.
+The script parses the complete works, pulls pre-defined characters by archetyep and combines their text into these aforementioned models. Each model is written to a JSON-serialized file.
 
-Environment variables for these creds are stored or passed at runtime as: 
-
-```
-TWITTER_API_KEY
-TWITTER_API_SECRET
-TWITTER_ACCESS_TOKEN
-TWITTER_ACCESS_TOKEN_SECRET
-```
-
-
-The command expects two pipeline-specific environment variables: the Twitter account to parse and the number of tweets to take.
-
-Running:
+To run preprocessing, enter:
 
 ```
-make run_etla
+make preprocess
 ```
 
-will generate a model located at `api/model/data/serialized/`.
-
-## Run the app
+## Running the app
 
 Run two separate windows in your terminal of choice:
 
@@ -60,23 +46,35 @@ Development backend api:
 make run_backend_dev
 ```
 
+To see the app in action, you'll need your own [Twitter API credentials](https://developer.twitter.com/en/apply-for-access.html).
+
+Environment variables for these creds are stored or passed at runtime as: 
+
+```
+TWITTER_API_KEY
+TWITTER_API_SECRET
+TWITTER_ACCESS_TOKEN
+TWITTER_ACCESS_TOKEN_SECRET
+```
+
+This is because every time a new permutation of Twitter account user + archetype is requested by the client a server executes a backend task to parse Twitter and build a new model that combines those tweets with the given archetypal Shakespeare model, if it doesn't already exist.
+
 You should be able to see a working example of the site in your favorite browser at `localhost:3000`.
 
 ## What's in the repo?
 
 ### `/app`
-A React web app that `GET`s a single `/texts` endpoint.
+A React web app that `GET`s a single `/lines` endpoint.
 
 ### `/backend`
-A Flask app that serves a single `GET` `/texts` request and returns a single "tweet".
+A Flask app that serves a single `GET` `/lines` request and returns a single "tweet".
 
 ### `/backend/model`
-* A `train.py` script for reading in a list of sentences and writing a new Markov model.
-* A `./data` directory to store a corpus and a trained model.
+* A `spacy_markovify.py` script that handles model tasks including loading, writing, and combining.
 
+### `/backend/shakespeare`
 
-### `/backend/scrapers`
+* Scripts for various ETLA (extract, transform, load, analyze) tasks related to Shakespeare data pulled from http://shakespeare.mit.edu/.
 
-* A `./shakespeare/main.py` script we'll fill out in the interview that will parse content from http://shakespeare.mit.edu/ and write it to a format readible by the model trainer.
-
-* A `./twitter/main.py`script that reads in the latest tweets from the specified user and writes them to a format readible by the model trainer.
+### `/backend/twitter`
+* Scripts for various ETLA tasks related to Twitter data.
