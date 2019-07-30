@@ -19,7 +19,7 @@ def build_combined_model(twitter_account, archetype):
     shakespeare_model = load_shakespeare_model(archetype)
     # TODO if more Shakespeare added/model size increased, then update weight
     # TODO experiment with weights
-    combined_model = combine_models([tweets_model, shakespeare_model], [1, 1])
+    combined_model = combine_models([tweets_model, shakespeare_model], [1.5, 1])
     write_model(combined_model, name=model_name(twitter_account, archetype))
     return combined_model
 
