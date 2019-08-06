@@ -1,4 +1,4 @@
-# Bardi B
+# Round three Recurse coding interview
 
 This project parses Shakespeare and mashes it up with tweets by Cardi B or any other Twitter user requested by the client app. It builds a model on the fly if it doesn't already have the requested model. Furthermore, you can request the Shakespearean style from "villain", "jester", or "dreamer".
 
